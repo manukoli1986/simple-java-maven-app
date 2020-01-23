@@ -34,24 +34,25 @@ pipeline {
                     junit 'target/surefire-reports/**/*.xml' 
                 }
             }
+        }
         stage ('Unit-Test') {
         	steps {
         		echo "Testing code"
         		sleep 30
         		}
-        	}
+        }
         stage ('Quality-scan') {
         	steps {
         		echo "Sonar Scan"
         		}
-        	}
+        }
 
         stage ('Upload to artifactory') {
         	steps {
         		echo "Nexus"
         		}
-        	}
-
         }
+
+        
     }
 }
