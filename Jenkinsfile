@@ -3,13 +3,14 @@
 import io.abc.*
 import jenkins.model.*
 
-node('master'){
-    
+node('master')
+		{    
     stage('Clone'){
-        git credentialsId: 'GithubCred', url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
-    }
+	        git credentialsId: 'GithubCred', url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
+	    	}
+
     stage('Build'){
-        sh 'mvn clean verify -DSkiptest=True'
-        //mvnBuild("mvn")
-    }
-}
+	        sh 'mvn clean verify -DSkiptest=True'
+	        // mvnBuild("mvn")
+	    	}
+		}
