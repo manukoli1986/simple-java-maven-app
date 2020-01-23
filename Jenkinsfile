@@ -11,6 +11,9 @@ pipeline {
     }
     stages {
 		stage ('Clone') {
+			options {
+        		timeout(time:10, unit: 'MINUTES')
+        	}
 			steps {
 		    git branch: 'master', credentialsId: 'GithubCred', url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
 			}
@@ -18,7 +21,7 @@ pipeline {
 
         stage ('Build') {
         	options {
-        		timeout(time:1, unit: 'SECONDS')
+        		timeout(time:10, unit: 'MINUTES')
         	}
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
