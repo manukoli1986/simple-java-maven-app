@@ -10,24 +10,16 @@ pipeline {
         jdk 'jdk'
     }
     stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
 		stage ('Clone') {
 			steps {
-		    git branch: 'master',
-            credentialsId: 'GithubCred',
-            url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
-			// echo 'This is a minimal pipeline.'
+		    git branch: 'master', credentialsId: 'GithubCred', url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
 			}
 		}
 
         stage ('Build') {
+        	options {
+        		timeout(time:1, unit: 'SECONDS')
+        	}
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
