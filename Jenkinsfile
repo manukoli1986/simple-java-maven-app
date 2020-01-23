@@ -9,7 +9,7 @@ pipeline {
         maven 'maven'
         jdk 'jdk'
     }
-    environments{
+    environment {
     	gitUrl = "https://github.com/manukoli1986/simple-java-maven-app.git"
     }
 	options {
@@ -21,7 +21,7 @@ pipeline {
     stages {
 		stage ('Clone') {
 			steps {
-		    git branch: 'master', credentialsId: 'GithubCred', url: ${gitUrl}
+		    git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
 			}
 		}
 
