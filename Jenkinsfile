@@ -13,7 +13,7 @@ pipeline {
     	gitUrl = "https://github.com/manukoli1986/simple-java-maven-app.git"
     }
 	options {
-		timeout(time:10, unit: 'MINUTES')
+		timeout(time:1, unit: 'MINUTES')
 		timestamps()
 	}
 // ##############################################################################################################
@@ -34,6 +34,24 @@ pipeline {
                     junit 'target/surefire-reports/**/*.xml' 
                 }
             }
+        stage ('Unit-Test') {
+        	steps {
+        		echo "Testing code"
+        		sleep 30
+        		}
+        	}
+        stage ('Quality-scan') {
+        	steps {
+        		echo "Sonar Scan"
+        		}
+        	}
+
+        stage ('Upload to artifactory') {
+        	steps {
+        		echo "Nexus"
+        		}
+        	}
+
         }
     }
 }
