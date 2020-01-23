@@ -44,12 +44,14 @@ pipeline {
         stage ('Quality-scan') {
         	steps {
         		echo "Sonar Scan"
+        		sleep 30
         		}
         }
 
         stage ('Upload to artifactory') {
         	steps {
         		echo "Nexus"
+        		sleep 30
         		}
         }
 
