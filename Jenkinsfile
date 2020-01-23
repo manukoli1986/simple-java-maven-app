@@ -18,9 +18,11 @@ pipeline {
                 '''
             }
         }
-		stage('Clone'){
+		stage ('Clone') {
 			steps {
-			git credentialsId: 'GithubCred', url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
+		    git branch: 'master',
+            credentialsId: 'GithubCred',
+            url: 'https://github.com/manukoli1986/simple-java-maven-app.git'
 			// echo 'This is a minimal pipeline.'
 		}
 
