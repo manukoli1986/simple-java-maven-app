@@ -18,24 +18,23 @@ pipeline {
 		timestamps()
 	}
 // ##############################################################################################################
-// ##############################################################################################################	
-    stages {
-		stage ('Clone') {
-			steps {
-		    git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
-			}
-		}
+  //   stages {
+		// stage ('Clone') {
+		// 	steps {
+		//     git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
+		// 	}
+		// }
 
-        stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
-            }
-        }
+  //       stage ('Build') {
+  //           steps {
+  //               sh 'mvn -Dmaven.test.failure.ignore=true install' 
+  //           }
+  //           post {
+  //               success {
+  //                   junit 'target/surefire-reports/**/*.xml' 
+  //               }
+  //           }
+  //       }
         // stage ('Unit-Test') {
         // 	steps {
         // 		echo "Testing code"
