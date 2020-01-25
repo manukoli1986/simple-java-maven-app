@@ -55,8 +55,9 @@ pipeline {
         // 		sleep 30
         // 		}
         // }
-        stage('Deploy') {
-            when { tag "v1" }
+        stage ('Deploy') {
+            // when { tag "v1" }
+            when { tag pattern: "v1\\d+", comparator: "REGEXP"}
             steps {
                 echo 'Deploying only because this commit is tagged...'
                 sh 'make deploy'
