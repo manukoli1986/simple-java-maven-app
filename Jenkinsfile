@@ -19,22 +19,26 @@ pipeline {
 	}
 // ##############################################################################################################
     stages {
-		// stage ('Clone') {
-		// 	steps {
-		//     git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
-		// 	}
-		// }
+		stage ('Clone') {
+			steps {
+		    git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
+			}
+		}
 
-  //       stage ('Build') {
-  //           steps {
-  //               sh 'mvn -Dmaven.test.failure.ignore=true install' 
-  //           }
-  //           post {
-  //               success {
-  //                   junit 'target/surefire-reports/**/*.xml' 
-  //               }
-  //           }
-  //       }
+        stage ('Build') {
+        	input {
+        		message "Please click if you're ready"
+        		ok "OK"
+        	}
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+        }
         // stage ('Unit-Test') {
         // 	steps {
         // 		echo "Testing code"
@@ -55,11 +59,10 @@ pipeline {
         // 		}
         // }
         stage ('Deploy') {
-            // when { tag "v1" }
             when { tag pattern: "v1\\d+", comparator: "REGEXP"}
             steps {
                 echo 'Deploying only because this commit is tagged...'
-                sh 'make deploy'
+                // sh 'make deploy'
             }
         }
 	}
