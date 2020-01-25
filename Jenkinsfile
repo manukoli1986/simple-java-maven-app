@@ -30,7 +30,8 @@ pipeline {
         		message "Please click if you're ready"
         		ok "OK"
         		parameters {
-        			string(name: 'Environment'), string(name: 'Tag')
+        			string(name: 'Environment')
+        			string(name: 'Tag')
         		}
         	}
             steps {
