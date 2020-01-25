@@ -29,6 +29,9 @@ pipeline {
         	input {
         		message "Please click if you're ready"
         		ok "OK"
+        		parameters {
+        			string(name: 'Environment'), string(name: 'Tag')
+        		}
         	}
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
@@ -58,12 +61,12 @@ pipeline {
         // 		sleep 30
         // 		}
         // }
-        stage ('Deploy') {
-            when { tag pattern: "v1\\d+", comparator: "REGEXP"}
-            steps {
-                echo 'Deploying only because this commit is tagged...'
-                // sh 'make deploy'
-            }
-        }
+        // stage ('Deploy') {
+        //     when { tag pattern: "v1\\d+", comparator: "REGEXP"}
+        //     steps {
+        //         echo 'Deploying only because this commit is tagged...'
+        //         // sh 'make deploy'
+        //     }
+        // }
 	}
 }
