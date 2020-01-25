@@ -18,7 +18,7 @@ pipeline {
 		timestamps()
 	}
 // ##############################################################################################################
-  //   stages {
+    stages {
 		// stage ('Clone') {
 		// 	steps {
 		//     git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
@@ -62,7 +62,5 @@ pipeline {
                 sh 'make deploy'
             }
         }
-
-        
-    
+	}
 }
