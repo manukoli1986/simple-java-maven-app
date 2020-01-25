@@ -26,9 +26,9 @@ pipeline {
 		}
 
         stage ('Build') {
-        	when {
-        		tag "v1"
-        	}
+	        	when {
+	        		tag "v1"
+	        	}
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
@@ -38,25 +38,25 @@ pipeline {
                 }
             }
         }
-        stage ('Unit-Test') {
-        	steps {
-        		echo "Testing code"
-        		sleep 30
-        		}
-        }
-        stage ('Quality-scan') {
-        	steps {
-        		echo "Sonar Scan"
-        		sleep 30
-        		}
-        }
+        // stage ('Unit-Test') {
+        // 	steps {
+        // 		echo "Testing code"
+        // 		sleep 30
+        // 		}
+        // }
+        // stage ('Quality-scan') {
+        // 	steps {
+        // 		echo "Sonar Scan"
+        // 		sleep 30
+        // 		}
+        // }
 
-        stage ('Upload to artifactory') {
-        	steps {
-        		echo "Nexus"
-        		sleep 30
-        		}
-        }
+        // stage ('Upload to artifactory') {
+        // 	steps {
+        // 		echo "Nexus"
+        // 		sleep 30
+        // 		}
+        // }
 
         
     }
