@@ -26,9 +26,6 @@ pipeline {
 		}
 
         stage ('Build') {
-	        	when {
-	        		tag "v1"
-	        	}
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
@@ -57,6 +54,13 @@ pipeline {
         // 		sleep 30
         // 		}
         // }
+        stage('Deploy') {
+            when { tag "v1" }
+            steps {
+                echo 'Deploying only because this commit is tagged...'
+                sh 'make deploy'
+            }
+        }
 
         
     }
