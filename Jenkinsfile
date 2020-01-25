@@ -13,7 +13,8 @@ pipeline {
     	gitUrl = "https://github.com/manukoli1986/simple-java-maven-app.git"
     }
 	options {
-		timeout(time:1, unit: 'MINUTES')
+		timeout(time:5, unit: 'MINUTES')
+		buildDiscarder(logRotator(numToKeepStr: '10'))
 		timestamps()
 	}
 // ##############################################################################################################
