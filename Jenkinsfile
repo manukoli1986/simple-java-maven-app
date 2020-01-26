@@ -16,12 +16,13 @@ pipeline {
 		timeout(time:5, unit: 'MINUTES')
 		buildDiscarder(logRotator(numToKeepStr: '10'))
 		timestamps()
+		ansiColor("xterm")
 	}
 // ##############################################################################################################
     stages {
 		stage ('Clone') {
 			steps {
-		    git branch: 'master', credentialsId: 'GithubCred', url: "${gitUrl}"
+		    git branch: 'master', credentialsId: 'GithubCred', url: gitUrl
 			}
 		}
 
@@ -36,7 +37,7 @@ pipeline {
         	}
             steps {
             	script {
-            		mvnBuild.verify() 
+            		mvnBuild.package
             	}
                 // sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
