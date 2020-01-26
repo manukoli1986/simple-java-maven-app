@@ -36,7 +36,7 @@ pipeline {
         	}
             steps {
             	script {
-            		mvnBuild.mvn 
+            		mvnBuild.verify 
             	}
                 // sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
